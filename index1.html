@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookBox - Unlimited Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="book-covers-bg">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597695864i/54493401.jpg" alt="Book cover">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg" alt="Book cover">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg" alt="Book cover">
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348990566i/5470.jpg" alt="Book cover">
+                </div>
+                <h1 class="app-logo">BookBox</h1>
+                <p class="app-tagline">Access to EVERY book ever published</p>
+                <div class="stats-preview">
+                    <div class="stat-item">
+                        <span class="stat-number">100,000+</span>
+                        <span class="stat-label">Books</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Discoveries</span>
+                    </div>
+                </div>
+            </div>
+            <div class="login-form">
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-control" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width login-btn">Enter the Unlimited Library</button>
+                    <button type="button" class="btn btn--secondary btn--full-width" id="demo-login">Quick Demo Access</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="screen">
+        <!-- Header with Search -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="header-title" id="current-tab-title">Home</h1>
+                <div class="header-actions">
+                    <button class="header-btn" id="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <div class="book-counter">
+                        <span id="database-counter">100,000+ Books</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tab Content -->
+        <main class="tab-content">
+            <!-- Home Feed Tab -->
+            <div id="home-tab" class="tab-panel active">
+                <div class="feed-section">
+                    <h2 class="section-title">
+                        📚 Your Reading Universe
+                        <span class="section-subtitle">Discover from millions of books</span>
+                    </h2>
+                    <div class="activity-feed" id="activity-feed">
+                        <!-- Activities will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="feed-section">
+                    <h2 class="section-title">
+                        🔥 Trending Worldwide
+                        <span class="section-subtitle">What everyone's reading right now</span>
+                    </h2>
+                    <div class="book-grid" id="popular-books">
+                        <!-- Popular books will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="feed-section">
+                    <h2 class="section-title">
+                        🏆 Award Winners
+                        <span class="section-subtitle">Nobel, Pulitzer, Booker Prize winners</span>
+                    </h2>
+                    <div class="book-grid" id="award-winners">
+                        <!-- Award winners will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="feed-section">
+                    <h2 class="section-title">
+                        🌍 International Bestsellers
+                        <span class="section-subtitle">Global literature at your fingertips</span>
+                    </h2>
+                    <div class="book-grid" id="international-books">
+                        <!-- International books will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discover Tab -->
+            <div id="discover-tab" class="tab-panel">
+                <div class="search-section">
+                    <div class="advanced-search-container">
+                        <div class="search-bar">
+                            <input type="text" class="form-control search-input" placeholder="Search from 100,000+ books, authors, ISBN..." id="search-input">
+                            <div class="search-suggestions" id="search-suggestions"></div>
+                        </div>
+                        <div class="search-filters">
+                            <select class="form-control filter-select" id="genre-filter">
+                                <option value="all">All Genres</option>
+                                <!-- Will be populated by JavaScript -->
+                            </select>
+                            <select class="form-control filter-select" id="language-filter">
+                                <option value="all">All Languages</option>
+                                <option value="english">English</option>
+                                <option value="spanish">Spanish</option>
+                                <option value="french">French</option>
+                                <option value="german">German</option>
+                                <option value="translated">Translated Works</option>
+                            </select>
+                            <select class="form-control filter-select" id="rating-filter">
+                                <option value="0">Any Rating</option>
+                                <option value="4">4+ Stars</option>
+                                <option value="4.5">4.5+ Stars</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Results Section (dynamically added) -->
+
+                <div class="discover-categories">
+                    <h2 class="section-title">Browse by Genre</h2>
+                    <div class="genre-grid" id="genre-grid">
+                        <!-- Genres will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="discover-by-decade">
+                    <h2 class="section-title">📖 Explore by Decade</h2>
+                    <div class="decade-grid" id="decade-grid">
+                        <div class="decade-item" onclick="searchByDecade('2020')">
+                            <h3>2020s</h3>
+                            <p>Recent Releases</p>
+                        </div>
+                        <div class="decade-item" onclick="searchByDecade('2010')">
+                            <h3>2010s</h3>
+                            <p>Modern Classics</p>
+                        </div>
+                        <div class="decade-item" onclick="searchByDecade('2000')">
+                            <h3>2000s</h3>
+                            <p>Millennium Literature</p>
+                        </div>
+                        <div class="decade-item" onclick="searchByDecade('1990')">
+                            <h3>1990s</h3>
+                            <p>90s Favorites</p>
+                        </div>
+                        <div class="decade-item" onclick="searchByDecade('1900')">
+                            <h3>20th Century</h3>
+                            <p>Literary Giants</p>
+                        </div>
+                        <div class="decade-item" onclick="searchByDecade('1800')">
+                            <h3>Classic Era</h3>
+                            <p>Timeless Works</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-section">
+                    <h2 class="section-title">📝 Community Reviews</h2>
+                    <div class="review-cards" id="trending-reviews">
+                        <!-- Trending reviews will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Book Tab -->
+            <div id="add-tab" class="tab-panel">
+                <div class="add-book-search">
+                    <h2 class="section-title">
+                        ➕ Find Any Book
+                        <span class="section-subtitle">Search our unlimited database</span>
+                    </h2>
+                    <div class="search-bar">
+                        <input type="text" class="form-control search-input" placeholder="Title, author, ISBN, series... we have everything!" id="book-search-input">
+                    </div>
+                    <div class="search-results" id="search-results">
+                        <!-- Search results will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="quick-add-section">
+                    <h2 class="section-title">🔥 Hot Right Now</h2>
+                    <div class="book-grid" id="recent-books">
+                        <!-- Recent books will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="curated-lists">
+                    <h2 class="section-title">📋 Curated Collections</h2>
+                    <div class="collections-grid">
+                        <div class="collection-item" onclick="showCollection('bestsellers')">
+                            <h3>📈 Bestsellers of All Time</h3>
+                            <p>The most popular books ever written</p>
+                        </div>
+                        <div class="collection-item" onclick="showCollection('staff-picks')">
+                            <h3>⭐ Staff Picks</h3>
+                            <p>Hidden gems recommended by our team</p>
+                        </div>
+                        <div class="collection-item" onclick="showCollection('book-club')">
+                            <h3>👥 Book Club Favorites</h3>
+                            <p>Perfect for group discussions</p>
+                        </div>
+                        <div class="collection-item" onclick="showCollection('must-read')">
+                            <h3>📚 Must-Read Classics</h3>
+                            <p>Essential books everyone should read</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Tab -->
+            <div id="notifications-tab" class="tab-panel">
+                <h2 class="section-title">🔔 Your Reading Updates</h2>
+                <div class="notifications-list" id="notifications-list">
+                    <!-- Notifications will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profile-tab" class="tab-panel">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=64" alt="Profile" class="profile-avatar">
+                        <div class="profile-details">
+                            <h2 class="profile-name" id="profile-name">Demo Reader</h2>
+                            <p class="profile-username" id="profile-username">@reader_demo</p>
+                            <p class="profile-bio">Exploring the infinite world of books! 📚✨</p>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-number" id="books-read-count">23</span>
+                            <span class="stat-label">Books Read</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="reviews-count">15</span>
+                            <span class="stat-label">Reviews</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="avg-rating">4.1</span>
+                            <span class="stat-label">Avg Rating</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="followers-count">42</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reading Goals Section -->
+                <div class="reading-goals-section">
+                    <h3 class="section-title">🎯 Reading Goals 2024</h3>
+                    <div class="reading-progress">
+                        <div class="goal-progress">
+                            <div class="goal-text">
+                                <span>Books Read: <strong>23/50</strong></span>
+                                <span>46% Complete</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 46%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rating Distribution Chart -->
+                <div class="rating-stats-section">
+                    <h3 class="section-title">⭐ Your Rating Distribution</h3>
+                    <div class="rating-distribution" id="rating-distribution">
+                        <!-- Chart will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="profile-library">
+                    <div class="library-tabs">
+                        <button class="library-tab active" data-status="read">📚 Read</button>
+                        <button class="library-tab" data-status="reading">📖 Reading</button>
+                        <button class="library-tab" data-status="want">❤️ Want to Read</button>
+                        <button class="library-tab" data-status="reviews">✍️ Reviews</button>
+                    </div>
+                    <div class="library-content" id="library-content">
+                        <!-- Library books will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-tab="home">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+                    <polyline points="9,22 9,12 15,12 15,22"></polyline>
+                </svg>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-tab="discover">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <span>Discover</span>
+            </button>
+            <button class="nav-item" data-tab="add">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <span>Add</span>
+            </button>
+            <button class="nav-item" data-tab="notifications">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+                </svg>
+                <span>Updates</span>
+            </button>
+            <button class="nav-item" data-tab="profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profile</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Enhanced Book Detail Modal -->
+    <div id="book-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="close-modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Book details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="modal hidden">
+        <div class="modal-content review-modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">✍️ Rate & Review</h2>
+                <button class="modal-close" id="close-review-modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="review-modal-content">
+                    <!-- Review form will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Rating Popup -->
+    <div id="quick-rating-popup" class="quick-rating-popup hidden">
+        <div class="quick-rating-content">
+            <div class="book-quick-info">
+                <img id="quick-rating-cover" src="" alt="Book cover" class="quick-rating-cover">
+                <div class="quick-rating-details">
+                    <h4 id="quick-rating-title"></h4>
+                    <p id="quick-rating-author"></p>
+                </div>
+            </div>
+            <div class="quick-rating-stars" id="quick-rating-stars">
+                <!-- Stars will be populated by JavaScript -->
+            </div>
+            <div class="quick-rating-actions">
+                <button class="btn btn--secondary" id="quick-rating-cancel">Cancel</button>
+                <button class="btn btn--primary" id="quick-rating-review">Write Review</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="fab-rate" title="Quick Rate a Book">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+        </svg>
+    </button>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="success-toast hidden">
+        <div class="toast-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22,4 12,14.01 9,11.01"></polyline>
+            </svg>
+            <span id="toast-message">Success!</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
